@@ -50,18 +50,15 @@ const app = Vue.createApp({
     selectedStep() {
       return this.activeIndex
     },
-
     // 2. выключена ли кнопка назад
     isActiveButt() {
       return this.activeIndex > 0 ? isButtonDisabled = false : isButtonDisabled = true
-
     },
     // 3. находимся ли мы на последнем шаге
     lastStep() {
       return this.activeIndex + 1 === this.steps.length
     }
   },
-
 })
 
 app.mount('#app')
