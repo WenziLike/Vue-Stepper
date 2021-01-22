@@ -4,42 +4,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Основы Vue</title>
+  <title>10 Quick-Fire Vue Interview Questions</title>
   <link rel="stylesheet" href="theme.css" />
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="container" id="app">
-    <div div class="card">
+  <div class="container" id="app" v-cloak>
+    <div class="card one">
+      <!-- =============== -->
+      <ul class="steps-list">
+        <li v-for="(step,key) in steps"
+          :class="{'steps-item' : true ,'done': key < activeIndex, 'active' : key === activeIndex}">
+          <span @click="setActive(key)">{{ key+1 }}</span>
+          {{ step.title }}
+        </li>
+      </ul>
+      <!-- =============== -->
+      <div v-if="!this.resetBtn">
+        <button class="btn" :disabled="isActiveButt" v-if="activeIndex >= 0" @click="prev">Назад</button>
+        <button class="btn" v-if="activeIndex +1 <= steps.length" @click="nextOfFinish">
+          <span v-if="lastStep">Закончить</span>
+          <span v-else>Вперед</span>
+        </button>
+      </div>
+      <!-- =============== -->
+      <div v-else>
+        <button class="btn" @click="reset">Начать заново</button>
+      </div>
+    </div>
+    <div class="card">
       <h1>{{ title }}</h1>
+      <hr>
       <!-- =============== -->
       <div class="steps">
         <div class="steps-content">
           {{steps[activeIndex].text}}
         </div>
-        <!-- =============== -->
-        <ul class="steps-list">
-          <li v-for="(step,key) in steps"
-            :class="{'steps-item' : true ,'done': key < activeIndex, 'active' : key === activeIndex}">
-            <span @click="setActive(key)">{{ key+1 }}</span>
-            {{ step.title }}
-          </li>
-        </ul>
-        <!-- =============== -->
-        <div v-if="!this.resetBtn">
-          <button class="btn" :disabled="isActiveButt" v-if="activeIndex >= 0" @click="prev">Назад</button>
-          <button class="btn primary" v-if="activeIndex +1 <= steps.length" @click="nextOfFinish">
-            <span v-if="lastStep">Закончить</span>
-            <span v-else>Вперед</span>
-          </button>
-        </div>
-        <!-- =============== -->
-        <div v-else>
-          <button class="btn" @click="reset">Начать заново</button>
-        </div>
+        <hr>
       </div>
-
     </div>
 
   </div>
