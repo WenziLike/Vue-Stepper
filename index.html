@@ -27,15 +27,15 @@
       </ul>
       <!-- =============== -->
       <div v-if="!this.resetBtn">
-        <button class="btn" :disabled="isActiveButt" v-if="activeIndex >= 0" @click="prev">Назад</button>
+        <button class="btn" :disabled="isActiveButt" v-if="activeIndex >= 0" @click="prev">Back To</button>
         <button class="btn" v-if="activeIndex +1 <= steps.length" @click="nextOfFinish">
-          <span v-if="lastStep">Закончить</span>
-          <span v-else>Вперед</span>
+          <span v-if="lastStep">To Finish</span>
+          <span v-else>Forward</span>
         </button>
       </div>
       <!-- =============== -->
       <div v-else>
-        <button class="btn" @click="reset">Начать заново</button>
+        <button class="btn" @click="reset">Start Over</button>
       </div>
     </div>
     <div class="card">
